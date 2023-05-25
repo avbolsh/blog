@@ -1,5 +1,5 @@
 from flask import Blueprint
 
-posts = Blueprint("posts", __name__, "templates")
+posts = Blueprint("posts", __name__, template_folder="templates/posts")
 
 from posts import rotes
