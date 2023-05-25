@@ -1,4 +1,4 @@
-from posts import posts
+from . import posts
 from flask import render_template, abort
 from jinja2 import TemplateNotFound
 
