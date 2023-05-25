@@ -1,7 +1,9 @@
-from app import db
 from datetime import datetime
 from time import time
 import re
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 def slugify(s):
     return re.sub(r'[^\w+]', "-", s)
