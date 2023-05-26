@@ -1,8 +1,31 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for
 from .models import Post, Tag
 from flask import request
+from .forms import PostForm
+from app import db
 
 posts = Blueprint("posts", __name__, template_folder="templates")
+
+
+@posts.route("/create/", methods=["GET", "POST"])
+def post_create():
+    
+    form = PostForm()
+
+    if request.method == "POST":
+        title = request.form.get("title")
+        body = request.form.get("body")
+
+        try:
+            post = Post(title=title, body=body)
+            db.session.add(post)
+            db.session.commit()
+        except:
+            pass
+    else:
+        return render_template("posts/post_create.html", form=form)
+    
+    return redirect(url_for("index"))
 
 
 @posts.route("/")
