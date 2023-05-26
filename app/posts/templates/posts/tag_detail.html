@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Post with "{{tag.title}}"" tag
+{% endblock title %}
+
+{% block content %}
+    {% for post in tag.posts %}
+        {% include 'posts/includes/cart.html' %}     
+    {% endfor %}
+{% endblock content %}
