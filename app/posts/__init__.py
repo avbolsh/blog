@@ -65,8 +65,13 @@ def tag_detail(slug):
 @posts.route('/<slug>/edit', methods=["POST", "GET"])
 def post_update(slug):
     post = Post.query.filter(Post.slug==slug).first()
+
+    form = PostForm(obj=post)
     
     if request.method == "POST":
         form = PostForm(formdata=request.form, obj=post)
         form.populate_obj(post)
+        
+
+    return render_template('posts/post_create.html', form=form)
         
