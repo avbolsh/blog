@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit post    
+{% endblock title %}
+
+{% block content %}
+<h1>Edit post</h1>
+<form action="{{ url_for('posts.post_update', slug=post.slug)}}" method="POST">
+    
+    <div class="form-group mb-5">
+        
+        <p>{{form.title.label()}}
+        {{form.title(class="form-control")}}
+        </p>
+
+        <p>{{form.body.label()}}
+        {{form.body(class="form-control")}}
+        </p>
+
+        <p>{{form.submit(class="btn btn-primary mb-3")}}</p>
+
+
+    </div>      
+
+</form>
+    
+{% endblock content %}
