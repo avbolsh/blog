@@ -60,3 +60,13 @@ def post_detail(slug):
 def tag_detail(slug):
     tag = Tag.query.filter(Tag.slug==slug).first()
     return render_template("posts/tag_detail.html", tag=tag)
+
+
+@posts.route('/<slug>/edit', methods=["POST", "GET"])
+def post_update(slug):
+    post = Post.query.filter(Post.slug==slug).first()
+    
+    if request.method == "POST":
+        form = PostForm(formdata=request.form, obj=post)
+        form.populate_obj(post)
+        
