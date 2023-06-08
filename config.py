@@ -7,3 +7,4 @@ class Config:
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(BASE_DIR, "database.db")
     SQLALCHEMY_TRACK_MODIFICATION = False
     SECRET_KEY = "fjskdfjsdlfksjdfkj"
+    FLASK_ADMIN_SWATCH = "cerulean"
