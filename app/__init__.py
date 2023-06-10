@@ -1,9 +1,10 @@
 from flask import Flask
-from app.extension import db, migrate, admin, ModelView
+from app.extension import db, migrate, admin, ModelView 
 
 from config import Config
 from app.models.post import Post
 from app.models.tag import Tag
+from app.models.user import User
 
 def create_app(config_class=Config):
 
@@ -18,6 +19,7 @@ def create_app(config_class=Config):
     admin.init_app(app)
     admin.add_view(ModelView(Post, db.session))
     admin.add_view(ModelView(Tag, db.session))
+    admin.add_view(ModelView(User, db.session))
 
 
     # Register blueprints here

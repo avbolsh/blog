@@ -20,6 +20,7 @@ class Post(db.Model):
     body = db.Column(db.Text)
     created = db.Column(db.DateTime, default=datetime.utcnow())
     tags = db.relationship("Tag", secondary=posts_tags, backref=db.backref("posts"), lazy="dynamic")
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
