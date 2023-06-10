@@ -1,5 +1,5 @@
 from flask import Flask
-from app.extension import db, migrate, admin, ModelView 
+from app.extension import db, migrate, admin, ModelView, login
 
 from config import Config
 from app.models.post import Post
@@ -15,6 +15,7 @@ def create_app(config_class=Config):
     # Initialize Flask extensions here
     db.init_app(app)
     migrate.init_app(app, db)
+    login.init_app(app)
 
     admin.init_app(app)
     admin.add_view(ModelView(Post, db.session))
@@ -28,6 +29,9 @@ def create_app(config_class=Config):
 
     from app.posts import bp as posts_bp
     app.register_blueprint(posts_bp, url_prefix="/blog")
+
+    from app.auth import bp as auth_bp
+    app.register_blueprint(auth_bp, url_prefix="/auth")
 
     return app
 
